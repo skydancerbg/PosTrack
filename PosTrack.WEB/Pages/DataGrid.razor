@@ -1,0 +1,42 @@
+﻿@page "/datagrid"
+
+@using PosTrack.WEB.Data
+@inject WeatherForecastService ForecastService
+
+<ContentHeader>
+    <Header>
+        <PageTitle Title="Simple Link" />
+    </Header>
+</ContentHeader>
+<ContentMain>
+    <Card>
+        <Title><CardTitle>Some simple link content</CardTitle></Title>
+        <Body>
+            @if (forecasts == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <DxDataGrid Data="@forecasts"
+                            CssClass="mw-1100">
+                    <Columns>
+                        <DxDataGridDateEditColumn Caption="Date" Field="Date" />
+                        <DxDataGridColumn Caption="Temperature" Field="TemperatureF" />
+                    </Columns>
+                </DxDataGrid>
+            }
+        </Body>
+    </Card>
+</ContentMain>
+
+
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
