@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PosTrack.WEB.Data
+namespace PosTrack.Data
 {
     public class WeatherForecastService
     {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PosTrack.WEB {
+namespace PosTrack {
     public class Program
     {
         public static void Main(string[] args)

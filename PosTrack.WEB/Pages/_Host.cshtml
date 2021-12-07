@@ -1,5 +1,5 @@
 ﻿@page "/"
-@namespace PosTrack.WEB.Pages
+@namespace PosTrack.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
@@ -10,11 +10,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PosTrack.WEB</title>
+    <title>PosTrack</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link href="css/site.css" rel="stylesheet" />
-    <link href="PosTrack.WEB.styles.css" rel="stylesheet" />
+    <link href="PosTrack.styles.css" rel="stylesheet" />
     <link href="_content/DevExpress.Blazor/dx-blazor.css" rel="stylesheet" />
     @*AdminLTE related:*@
     <!-- Google Font: Source Sans Pro -->
@@ -44,7 +44,7 @@
     }
     @if (isIEOrEdgeLegacy)
     {
-        <component type="typeof(PosTrack.WEB.Shared.BrowserNotSupported)" render-mode="Static" />
+        <component type="typeof(PosTrack.Shared.BrowserNotSupported)" render-mode="Static" />
     }
     else
     {
@@ -57,7 +57,7 @@
                         <div class="rect4"></div>
                         <div class="rect5"></div>
                     </div>*@
-                <component type="typeof(App)" render-mode="Server" / />
+                <component type="typeof(App)" render-mode="Server"  />
             </app>
             <div id="blazor-error-ui">
                 <environment include="Staging,Production">

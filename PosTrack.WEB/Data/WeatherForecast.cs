@@ -1,6 +1,6 @@
 using System;
 
-namespace PosTrack.WEB.Data
+namespace PosTrack.Data
 {
     public class WeatherForecast
     {

@@ -1,12 +1,13 @@
-using PosTrack.WEB.Data;
+using PosTrack.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blazor.AdminLte;
+using Microsoft.EntityFrameworkCore;
 
-namespace PosTrack.WEB {
+namespace PosTrack {
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -20,6 +21,10 @@ namespace PosTrack.WEB {
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            string dbConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(options => options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -51,6 +56,8 @@ namespace PosTrack.WEB {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            AppDbInitializer.Seed(app);
         }
     }
 }

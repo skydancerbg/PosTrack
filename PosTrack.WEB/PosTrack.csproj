@@ -7,10 +7,16 @@
     <PackageReference Include="Blazorized.AdminLte" Version="0.1.8" />
     <PackageReference Include="Blazorized.AdminLte.Content" Version="3.0.7" />
     <PackageReference Include="DevExpress.Blazor" Version="21.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Shared\MainLayout - Copy.razor.css">
+    <None Update="Shared\MainLayout.css">
       <DependentUpon>MainLayout.razor.css</DependentUpon>
     </None>
   </ItemGroup>

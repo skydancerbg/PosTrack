@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "PosTrack.WEB": {
+    "PosTrack": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
