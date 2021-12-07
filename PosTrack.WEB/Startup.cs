@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blazor.AdminLte;
 using Microsoft.EntityFrameworkCore;
+using PosTrack.Services;
 
 namespace PosTrack {
     public class Startup
@@ -23,12 +24,14 @@ namespace PosTrack {
         {
             // Add framework services.
             string dbConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
             services.AddDbContext<AppDbContext>(options => options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddAdminLte();
+            services.AddScoped<ITagService, TagService>();
 
         }
 

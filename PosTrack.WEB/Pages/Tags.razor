@@ -1,0 +1,61 @@
+﻿@page "/rfid_tags"
+
+@using PosTrack.Data
+@using PosTrack.Data.Models
+@using PosTrack.Services
+@inject ITagService TagService
+  
+
+<ContentHeader>
+    <Header>
+        <PageTitle Title="RFID тагове регистрирани в системата" />
+    </Header>
+</ContentHeader>
+<ContentMain>
+    <Card>
+        <Title>
+            <CardTitle>RFID тагове</CardTitle>
+        </Title>
+        <Body>
+            @if (RfidTags == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <DxDataGrid Data="@RfidTags"
+                            CssClass="mw-1100">
+                    <Columns>
+                        @*<DxDataGridDateEditColumn Caption="Date" Field="Date" />*@
+
+                        <DxDataGridColumn Caption="Id" Field="Id" />
+                        <DxDataGridColumn Caption="№ на тага (Етикет)" Field="TagLabel" />
+                        <DxDataGridColumn Caption="RFID код" Field="Rfid" />
+                    </Columns>
+                </DxDataGrid>
+            }
+        </Body>
+    </Card>
+</ContentMain>
+
+
+
+@code {
+    List<Tag> RfidTags = new List<Tag>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //AppDbContext dbContext = contextFactory.CreateDbContext();
+
+        //dbContext.Tags 
+        RfidTags = TagService.AllTags;
+
+    }
+
+    //private WeatherForecast[] forecasts;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    //}
+}
