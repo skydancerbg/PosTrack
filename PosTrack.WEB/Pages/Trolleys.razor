@@ -1,0 +1,64 @@
+﻿@page "/trolleys"
+
+@using PosTrack.Data
+@using PosTrack.Data.Models
+@using PosTrack.Services
+@inject ITrolleyService TrolleyService
+  
+
+<ContentHeader>
+    <Header>
+        <PageTitle Title="Колички регистрирани в системата" />
+    </Header>
+</ContentHeader>
+<ContentMain>
+    <Card>
+        <Title>
+            <CardTitle>Колички:</CardTitle>
+        </Title>
+        <Body>
+            @if (TrolleyList == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <DxDataGrid Data="@TrolleyList"
+                            CssClass="mw-1100">
+                    <Columns>
+                        @*<DxDataGridDateEditColumn Caption="Date" Field="Date" />*@
+
+                        <DxDataGridColumn Caption="Label" Field="Label" />
+                        <DxDataGridColumn Caption="RightTagID" Field="LeftTagID" />
+                        <DxDataGridColumn Caption="RightTagID" Field="RightTagID" />
+                        <DxDataGridColumn Caption="RightTag" Field="RightTag" />
+                    </Columns>
+                </DxDataGrid>
+            }
+        </Body>
+    </Card>
+</ContentMain>
+
+
+
+@code {
+    List<Trolley> TrolleyList = new List<Trolley>();
+    public string rfid;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //AppDbContext dbContext = contextFactory.CreateDbContext();
+
+        //dbContext.Tags 
+        TrolleyList = TrolleyService.AllTrolleys;
+
+        //rfid = TrolleyService.
+    }
+
+    //private WeatherForecast[] forecasts;
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    //}
+}

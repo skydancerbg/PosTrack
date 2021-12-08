@@ -8,7 +8,8 @@ using Blazor.AdminLte;
 using Microsoft.EntityFrameworkCore;
 using PosTrack.Services;
 
-namespace PosTrack {
+namespace PosTrack
+{
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -23,15 +24,22 @@ namespace PosTrack {
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            string dbConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            //services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
-            services.AddDbContext<AppDbContext>(options => options.UseMySql(dbConnectionString, ServerVersion.AutoDetect(dbConnectionString)));
+            string sqlDBConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            string mariaDBConnectionString = Configuration.GetConnectionString("MariaDBConnection");
+
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(sqlDBConnectionString));
+
+            //Unocomment to use MariaDB server
+            //services.AddDbContext<AppDbContext>(options => options.UseMySql(mariaDBConnectionString, ServerVersion.AutoDetect(mariaDBConnectionString)));
+
+            //services.AddDbContextFactory<AppDbContext>(options => options.UseMySql(mariaDBConnectionString, ServerVersion.AutoDetect(mariaDBConnectionString)));
 
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddAdminLte();
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ITrolleyService, TrolleyService>();
 
         }
 

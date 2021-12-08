@@ -21,6 +21,13 @@ namespace PosTrack.Data.Models
         public string Rfid { get; set; }
 
 
+
+
+
+
+
+        //public virtual ICollection<Tag> LeftTags { get; set; }
+        //public virtual ICollection<Tag> RightTags { get; set; }
         // Naviagation properties
 
         //////////

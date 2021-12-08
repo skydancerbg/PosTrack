@@ -21,6 +21,7 @@ namespace PosTrack.Data.Models
         [Required]
         public int LotDetailId { get; set; }
 
+        [Column(TypeName = "decimal(8,3)")]
         public decimal? WaterContent { get; set; }
 
         [Required]

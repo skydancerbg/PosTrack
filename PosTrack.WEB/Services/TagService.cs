@@ -33,6 +33,7 @@ namespace PosTrack.Services
         public Tag GetTagById(int tagid) => _context.Tags.FirstOrDefault(n => n.Id == tagid);
 
         public List<Tag> AllTags => _context.Tags.ToList();
+
         //{
         //    return _context.Tags.ToList();
         //}

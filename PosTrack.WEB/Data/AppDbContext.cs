@@ -17,10 +17,18 @@ namespace PosTrack.Data
 
         //public DbSet<Trolley> Trolleys { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Trolley> Trolleys { get; set; }
+        public DbSet<Lot> Lots { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Trolley>().HasOne(a => a.LeftTag).WithOne()
+                   .HasForeignKey<Trolley>(a => a.LeftTagID).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Trolley>().HasOne(a => a.RightTag).WithOne()
+                  .HasForeignKey<Trolley>(a => a.RightTagID).OnDelete(DeleteBehavior.Restrict);
 
             //modelBuilder.Entity<Trolley>()
             //.HasRequired(a => a.BillingAddress)

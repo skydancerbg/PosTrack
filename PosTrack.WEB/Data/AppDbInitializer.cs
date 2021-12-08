@@ -18,26 +18,50 @@ namespace PosTrack.Data
 
                 if (!context.Tags.Any())
                 {
-                    context.Tags.AddRange(new Tag()
+                    context.Tags.AddRange(
+                    new Tag()
                     {
+                        //Id=1,
                         TagLabel = 1,
                         Rfid = "111111"
                     },
                     new Tag()
                     {
+                        //Id=2,
                         TagLabel = 2,
                         Rfid = "222222"
                     },
                     new Tag()
                     {
+                        //Id=3,
                         TagLabel = 3,
                         Rfid = "333333"
                     }, new Tag()
                     {
+                        //Id=4,
                         TagLabel = 4,
                         Rfid = "444444"
                     }
                     );
+                    context.Trolleys.AddRange(
+                        new Trolley()
+                        {
+                           //Id = 1,
+                            Label = 1,
+                            InService = false,
+                            LeftTagID=1,
+                            RightTagID=2
+                        },
+                        new Trolley()
+                        {
+                            //Id = 2,
+                            Label = 2,
+                            InService = false,
+                            LeftTagID=3,
+                            RightTagID=4
+                        }
+
+                        );
                     context.SaveChanges();
                 }
             }
